@@ -39,8 +39,8 @@ for i = 1:iter_num
             MAE_SGD(i,j) = (MAE_SGD(i,j - 1)*(j-1) + abs(r-r_hat)) / j;
         end
 
-        U(a,:) = U(a,:) - learning_rate * ((r_hat - r) * V(b,:) + 2 * reg * U(a,:)) ;
-        V(b,:) = V(b,:) - learning_rate * ((r_hat - r) * U(a,:) + 2 * reg * V(b,:));   
+        U(a,:) = U(a,:) - learning_rate * ()  V(b,:);
+        V(b,:) = V(b,:) + sign(r-r_hat)*beta_t*U(a,:);   
     end
     
     tic;
@@ -60,7 +60,7 @@ end
 
 %% plot
 % plot
-plot(MAE_SGD,'DisplayName','SFM-SGD');
+plot(MAE_SGD,'DisplayName','SFM-PA');
 legend('-DynamicLegend');
 xlabel('Number of samples seen');
 ylabel('MAE'); 
